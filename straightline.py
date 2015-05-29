@@ -45,7 +45,7 @@ class StraightLines():
 
         # let's go backward at 0.2 m/s
         backward_cmd = Twist()
-        backward_cmd.linear.x = 0.2
+        backward_cmd.linear.x = -0.2
 	# by default angular.z is 0 so setting this isn't required
 
 
@@ -54,12 +54,12 @@ class StraightLines():
         while not rospy.is_shutdown():
 	    # go forward 0.4 m (2 seconds * 0.2 m / seconds)
 	    rospy.loginfo("Going Straight")
-            for x in range(0,10):
+            for x in range(0,50):
                 self.cmd_vel.publish(forward_cmd)
                 r.sleep()
-	    # turn 90 degrees
+	    
 	    rospy.loginfo("Going back")
-            for x in range(0,10):
+            for x in range(0,50):
                 self.cmd_vel.publish(backward_cmd)
                 r.sleep()            
 	    count = count + 1
