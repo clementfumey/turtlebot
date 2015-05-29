@@ -32,36 +32,159 @@ class StraightLines():
         
         self.cmd_vel = rospy.Publisher('cmd_vel_mux/input/navi', Twist, queue_size=10)
      
-	# 5 HZ
-        r = rospy.Rate(5);
+	# 10 HZ
+        r = rospy.Rate(10);
 
 	# create two different Twist() variables.  One for moving forward.  One for moving backward.
 
-        # let's go forward at 0.2 m/s
-        forward_cmd = Twist()
-        forward_cmd.linear.x = 0.2
+        # let's go forward at 0.1 m/s
+        forward_cmd1 = Twist()
+        forward_cmd1.linear.x = 0.1
+	# by default angular.z is 0 so setting this isn't required
+
+		# let's go forward at 0.2 m/s
+        forward_cmd2 = Twist()
+        forward_cmd2.linear.x = 0.2
+	# by default angular.z is 0 so setting this isn't required
+	
+		# let's go forward at 0.3 m/s
+        forward_cmd3 = Twist()
+        forward_cmd3.linear.x = 0.3
+	# by default angular.z is 0 so setting this isn't required
+	
+	# let's go forward at 0.4 m/s
+        forward_cmd4 = Twist()
+        forward_cmd4.linear.x = 0.4
+	# by default angular.z is 0 so setting this isn't required
+
+		# let's go forward at 0.5 m/s
+        forward_cmd5 = Twist()
+        forward_cmd5.linear.x = 0.5
+	# by default angular.z is 0 so setting this isn't required
+	
+		# let's go forward at 0.6 m/s
+        forward_cmd6 = Twist()
+        forward_cmd6.linear.x = 0.6
+	# by default angular.z is 0 so setting this isn't required
+	
+		# let's go forward at 0.7 m/s
+        forward_cmd7 = Twist()
+        forward_cmd7.linear.x = 0.7
+	# by default angular.z is 0 so setting this isn't required
+	
+	
+        # let's go backward at 0.1 m/s
+        backward_cmd1 = Twist()
+        backward_cmd1.linear.x = 0.1
+	# by default angular.z is 0 so setting this isn't required
+
+		# let's go backward at 0.2 m/s
+        backward_cmd2 = Twist()
+        backward_cmd2.linear.x = 0.2
+	# by default angular.z is 0 so setting this isn't required
+	
+		# let's go backward at 0.3 m/s
+        backward_cmd3 = Twist()
+        backward_cmd3.linear.x = 0.3
+	# by default angular.z is 0 so setting this isn't required
+	
+	# let's go backward at 0.4 m/s
+        backward_cmd4 = Twist()
+        backward_cmd4.linear.x = 0.4
+	# by default angular.z is 0 so setting this isn't required
+
+		# let's go backward at 0.5 m/s
+        backward_cmd5 = Twist()
+        backward_cmd5.linear.x = 0.5
+	# by default angular.z is 0 so setting this isn't required
+	
+		# let's go backward at 0.6 m/s
+        backward_cmd6 = Twist()
+        backward_cmd6.linear.x = 0.6
+	# by default angular.z is 0 so setting this isn't required
+	
+		# let's go backward at 0.7 m/s
+        backward_cmd7 = Twist()
+        backward_cmd7.linear.x = 0.7
 	# by default angular.z is 0 so setting this isn't required
 
 
-        # let's go backward at 0.2 m/s
-        backward_cmd = Twist()
-        backward_cmd.linear.x = -0.2
-	# by default angular.z is 0 so setting this isn't required
-
-
-	#Go forward for 2 seconds (10 x 5 HZ) then backward  for 2 second
+	#Go forward for 2 seconds (10 x 10 HZ) then backward  for 2 second
 	count = 0
         while not rospy.is_shutdown():
-	    # go forward 0.4 m (2 seconds * 0.2 m / seconds)
+	    
 	    rospy.loginfo("Going Straight")
-            for x in range(0,50):
-                self.cmd_vel.publish(forward_cmd)
+	    # go forward 3 m (2 seconds * 0.7 m / seconds)
+	        for x in range(0,10):
+                self.cmd_vel.publish(forward_cmd1)
                 r.sleep()
+            for x in range(0,10):
+                self.cmd_vel.publish(forward_cmd2)
+                r.sleep()
+                
+            for x in range(0,10):
+                self.cmd_vel.publish(forward_cmd3)
+                r.sleep()
+                
+            for x in range(0,10):
+                self.cmd_vel.publish(forward_cmd4)
+                r.sleep()
+                
+            for x in range(0,43):
+                self.cmd_vel.publish(forward_cmd5)
+                r.sleep()
+	        for x in range(0,10):
+                self.cmd_vel.publish(forward_cmd4)
+                r.sleep()
+            for x in range(0,10):
+                self.cmd_vel.publish(forward_cmd3)
+                r.sleep()
+                
+            for x in range(0,10):
+                self.cmd_vel.publish(forward_cmd2)
+                r.sleep()
+                
+            for x in range(0,10):
+                self.cmd_vel.publish(forward_cmd1)
+                r.sleep()
+                
+                
 	    
 	    rospy.loginfo("Going back")
-            for x in range(0,50):
-                self.cmd_vel.publish(backward_cmd)
-                r.sleep()            
+	        for x in range(0,10):
+                self.cmd_vel.publish(backward_cmd1)
+                r.sleep()
+            for x in range(0,10):
+                self.cmd_vel.publish(backward_cmd2)
+                r.sleep()
+                
+            for x in range(0,10):
+                self.cmd_vel.publish(backward_cmd3)
+                r.sleep()
+                
+            for x in range(0,10):
+                self.cmd_vel.publish(backward_cmd4)
+                r.sleep()
+                
+            for x in range(0,43):
+                self.cmd_vel.publish(backward_cmd5)
+                r.sleep()
+	        for x in range(0,10):
+                self.cmd_vel.publish(backward_cmd4)
+                r.sleep()
+            for x in range(0,10):
+                self.cmd_vel.publish(backward_cmd3)
+                r.sleep()
+                
+            for x in range(0,10):
+                self.cmd_vel.publish(backward_cmd2)
+                r.sleep()
+                
+            for x in range(0,10):
+                self.cmd_vel.publish(backward_cmd1)
+                r.sleep()
+                
+                          
 	    count = count + 1
 	    if(count == 4): 
                 count = 0
@@ -70,7 +193,7 @@ class StraightLines():
         
     def shutdown(self):
         # stop turtlebot
-        rospy.loginfo("Stop Drawing Squares")
+        rospy.loginfo("Stop Lines")
         self.cmd_vel.publish(Twist())
         rospy.sleep(1)
  
