@@ -75,37 +75,37 @@ class StraightLines():
 	
         # let's go backward at 0.1 m/s
         backward_cmd1 = Twist()
-        backward_cmd1.linear.x = 0.1
+        backward_cmd1.linear.x = -0.1
 	# by default angular.z is 0 so setting this isn't required
 
 		# let's go backward at 0.2 m/s
         backward_cmd2 = Twist()
-        backward_cmd2.linear.x = 0.2
+        backward_cmd2.linear.x = -0.2
 	# by default angular.z is 0 so setting this isn't required
 	
 		# let's go backward at 0.3 m/s
         backward_cmd3 = Twist()
-        backward_cmd3.linear.x = 0.3
+        backward_cmd3.linear.x = -0.3
 	# by default angular.z is 0 so setting this isn't required
 	
 	# let's go backward at 0.4 m/s
         backward_cmd4 = Twist()
-        backward_cmd4.linear.x = 0.4
+        backward_cmd4.linear.x = -0.4
 	# by default angular.z is 0 so setting this isn't required
 
 		# let's go backward at 0.5 m/s
         backward_cmd5 = Twist()
-        backward_cmd5.linear.x = 0.5
+        backward_cmd5.linear.x = -0.5
 	# by default angular.z is 0 so setting this isn't required
 	
 		# let's go backward at 0.6 m/s
         backward_cmd6 = Twist()
-        backward_cmd6.linear.x = 0.6
+        backward_cmd6.linear.x = -0.6
 	# by default angular.z is 0 so setting this isn't required
 	
 		# let's go backward at 0.7 m/s
         backward_cmd7 = Twist()
-        backward_cmd7.linear.x = 0.7
+        backward_cmd7.linear.x = -0.7
 	# by default angular.z is 0 so setting this isn't required
 
 
@@ -115,7 +115,7 @@ class StraightLines():
 	    
 	    rospy.loginfo("Going Straight")
 	    # go forward 3 m (2 seconds * 0.7 m / seconds)
-	        for x in range(0,10):
+	    for x in range(0,10):
                 self.cmd_vel.publish(forward_cmd1)
                 r.sleep()
             for x in range(0,10):
@@ -133,7 +133,8 @@ class StraightLines():
             for x in range(0,43):
                 self.cmd_vel.publish(forward_cmd5)
                 r.sleep()
-	        for x in range(0,10):
+	    
+            for x in range(0,10):
                 self.cmd_vel.publish(forward_cmd4)
                 r.sleep()
             for x in range(0,10):
@@ -151,7 +152,7 @@ class StraightLines():
                 
 	    
 	    rospy.loginfo("Going back")
-	        for x in range(0,10):
+	    for x in range(0,10):
                 self.cmd_vel.publish(backward_cmd1)
                 r.sleep()
             for x in range(0,10):
@@ -169,7 +170,7 @@ class StraightLines():
             for x in range(0,43):
                 self.cmd_vel.publish(backward_cmd5)
                 r.sleep()
-	        for x in range(0,10):
+	    for x in range(0,10):
                 self.cmd_vel.publish(backward_cmd4)
                 r.sleep()
             for x in range(0,10):
