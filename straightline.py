@@ -23,83 +23,83 @@ from geometry_msgs.msg import Twist
 from math import radians
 
 class StraightLines():
-    def __init__(self):
-        # initiliaze
-        rospy.init_node('straightlines', anonymous=False)
+	def __init__(self):
+		# initiliaze
+		rospy.init_node('straightlines', anonymous=False)
 
-        # What to do you ctrl + c    
-        rospy.on_shutdown(self.shutdown)
-        
-        self.cmd_vel = rospy.Publisher('cmd_vel_mux/input/navi', Twist, queue_size=10)
-     
+		# What to do you ctrl + c    
+		rospy.on_shutdown(self.shutdown)
+		
+		self.cmd_vel = rospy.Publisher('cmd_vel_mux/input/navi', Twist, queue_size=10)
+	 
 	# 10 HZ
-        r = rospy.Rate(10);
+		r = rospy.Rate(10);
 
 	# create two different Twist() variables.  One for moving forward.  One for moving backward.
 
-        # let's go forward at 0.1 m/s
-        forward_cmd1 = Twist()
-        forward_cmd1.linear.x = 0.01
+		# let's go forward at 0.1 m/s
+		forward_cmd1 = Twist()
+		forward_cmd1.linear.x = 0.01
 	# by default angular.z is 0 so setting this isn't required
 	
-        # let's go backward at 0.1 m/s
-        backward_cmd1 = Twist()
-        backward_cmd1.linear.x = -0.01
+		# let's go backward at 0.1 m/s
+		backward_cmd1 = Twist()
+		backward_cmd1.linear.x = -0.01
 	# by default angular.z is 0 so setting this isn't required
 
 
 	#Go forward for 2 seconds (10 x 10 HZ) then backward  for 2 second
-	count = 0
-        while not rospy.is_shutdown():
-	    
-	    rospy.loginfo("Going Straight")
-	    # go forward 3 m (2 seconds * 0.7 m / seconds
-	    rospy.loginfo("Speed up")
-	    for x in range(0,60):
-			self.cmd_vel.publish(forward_cmd1)
-			forward_cmd1.linear.x += 0.1
-			r.sleep()
-        rospy.loginfo("Maximum speed reached")
-		for x in range(0,50):
-			self.cmd_vel.publish(forward_cmd1)
-			r.sleep()   
-        rospy.loginfo("Slow down")
-		for x in range(0,60):
-			self.cmd_vel.publish(forward_cmd1)
-			forward_cmd1.linear.x -= 0.1
-			r.sleep()
-              
-	    
-	    rospy.loginfo("Going back")
-	    rospy.loginfo("Speed up")
-		for x in range(0,60):
-			self.cmd_vel.publish(backward_cmd1)
-			backward_cmd1.linear.x -= 0.1
-			r.sleep()
-		rospy.loginfo("Maximum speed reached")
-		for x in range(0,50):
-			self.cmd_vel.publish(backward_cmd1)
-			r.sleep()   
-		rospy.loginfo("Slow down")	
-		for x in range(0,60):
-			self.cmd_vel.publish(backward_cmd1)
-			backward_cmd1.linear.x += 0.1
-			r.sleep()                
-                          
-	    count = count + 1
-	    if(count == 4): 
-                count = 0
-	    if(count == 0): 
-                rospy.loginfo("TurtleBot should be close to the original starting position (but it's probably way off)")
-        
-    def shutdown(self):
-        # stop turtlebot
-        rospy.loginfo("Stop Lines")
-        self.cmd_vel.publish(Twist())
-        rospy.sleep(1)
+		count = 0
+		while not rospy.is_shutdown():
+		
+			rospy.loginfo("Going Straight")
+			# go forward 3 m (2 seconds * 0.7 m / seconds
+			rospy.loginfo("Speed up")
+			for x in range(0,60):
+				self.cmd_vel.publish(forward_cmd1)
+				forward_cmd1.linear.x += 0.1
+				r.sleep()
+			rospy.loginfo("Maximum speed reached")
+			for x in range(0,50):
+				self.cmd_vel.publish(forward_cmd1)
+				r.sleep()   
+			rospy.loginfo("Slow down")
+			for x in range(0,60):
+				self.cmd_vel.publish(forward_cmd1)
+				forward_cmd1.linear.x -= 0.1
+				r.sleep()
+
+			rospy.loginfo("Going back")
+			rospy.loginfo("Speed up")
+			for x in range(0,60):
+				self.cmd_vel.publish(backward_cmd1)
+				backward_cmd1.linear.x -= 0.1
+				r.sleep()
+			rospy.loginfo("Maximum speed reached")
+			for x in range(0,50):
+				self.cmd_vel.publish(backward_cmd1)
+				r.sleep()   
+			rospy.loginfo("Slow down")
+			for x in range(0,60):
+				self.cmd_vel.publish(backward_cmd1)
+				backward_cmd1.linear.x += 0.1
+				r.sleep()
+					
+							  
+			count = count + 1
+			if(count == 4): 
+					count = 0
+			if(count == 0): 
+					rospy.loginfo("TurtleBot should be close to the original starting position (but it's probably way off)")
+			
+	def shutdown(self):
+		# stop turtlebot
+		rospy.loginfo("Stop Lines")
+		self.cmd_vel.publish(Twist())
+		rospy.sleep(1)
  
 if __name__ == '__main__':
-    try:
-        StraightLines()
-    except:
-        rospy.loginfo("node terminated.")
+	try:
+		StraightLines()
+	except:
+		rospy.loginfo("node terminated.")
