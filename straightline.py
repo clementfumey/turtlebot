@@ -59,7 +59,7 @@ class StraightLines():
                 forward_cmd1.linear.x += 0.1
                 r.sleep()
                 
-             for x in range(0,50):
+            for x in range(0,50):
                 self.cmd_vel.publish(forward_cmd1)
                 r.sleep()   
                 
@@ -76,7 +76,7 @@ class StraightLines():
                 backward_cmd1.linear.x -= 0.1
                 r.sleep()
                 
-             for x in range(0,50):
+            for x in range(0,50):
                 self.cmd_vel.publish(backward_cmd1)
                 r.sleep()   
                 
