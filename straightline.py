@@ -39,12 +39,12 @@ class StraightLines():
 
         # let's go forward at 0.1 m/s
         forward_cmd1 = Twist()
-        forward_cmd1.linear.x = 0
+        forward_cmd1.linear.x = 0.01
 	# by default angular.z is 0 so setting this isn't required
 	
         # let's go backward at 0.1 m/s
         backward_cmd1 = Twist()
-        backward_cmd1.linear.x = 0
+        backward_cmd1.linear.x = -0.01
 	# by default angular.z is 0 so setting this isn't required
 
 
@@ -54,36 +54,38 @@ class StraightLines():
 	    
 	    rospy.loginfo("Going Straight")
 	    # go forward 3 m (2 seconds * 0.7 m / seconds
-	    for x in range(0,50):
-                self.cmd_vel.publish(forward_cmd1)
-                forward_cmd1.linear.x += 0.1
-                r.sleep()
-                
-             for x in range(0,50):
-                self.cmd_vel.publish(forward_cmd1)
-                r.sleep()   
-                
-            for x in range(0,50):
-                self.cmd_vel.publish(forward_cmd1)
-                forward_cmd1.linear.x -= 0.1
-                r.sleep()
+	    rospy.loginfo("Speed up")
+	    for x in range(0,60):
+			self.cmd_vel.publish(forward_cmd1)
+            forward_cmd1.linear.x += 0.1
+            r.sleep()
+        rospy.loginfo("Maximum speed reached")
+		for x in range(0,50):
+			self.cmd_vel.publish(forward_cmd1)
+			r.sleep()   
+        rospy.loginfo("Slow down")
+		for x in range(0,60):
+			self.cmd_vel.publish(forward_cmd1)
+			forward_cmd1.linear.x -= 0.1
+			r.sleep()
 
                 
 	    
 	    rospy.loginfo("Going back")
-            for x in range(0,50):
-                self.cmd_vel.publish(backward_cmd1)
-                backward_cmd1.linear.x -= 0.1
-                r.sleep()
-                
-             for x in range(0,50):
-                self.cmd_vel.publish(backward_cmd1)
-                r.sleep()   
-                
-            for x in range(0,50):
-                self.cmd_vel.publish(backward_cmd1)
-                backward_cmd1.linear.x += 0.1
-                r.sleep()
+	    rospy.loginfo("Speed up")
+		for x in range(0,60):
+			self.cmd_vel.publish(backward_cmd1)
+			backward_cmd1.linear.x -= 0.1
+			r.sleep()
+		rospy.loginfo("Maximum speed reached")
+		for x in range(0,50):
+			self.cmd_vel.publish(backward_cmd1)
+			r.sleep()   
+		rospy.loginfo("Slow down")	
+		for x in range(0,60):
+			self.cmd_vel.publish(backward_cmd1)
+			backward_cmd1.linear.x += 0.1
+			r.sleep()
                 
                           
 	    count = count + 1
